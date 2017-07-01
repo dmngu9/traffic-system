@@ -2,22 +2,22 @@ import {GreenRedState, IState, RedGreenState, RedYellowState, YellowRedState} fr
 
 export class StateMachine {
 
-    private GreenRedState: IState;
-    private YellowRedState: IState;
-    private RedGreenState: IState;
-    private RedYellowState: IState;
+    private greenRedState: IState;
+    private yellowRedState: IState;
+    private redGreenState: IState;
+    private redYellowState: IState;
     private currentState: IState;
 
     constructor() {
-        this.GreenRedState = new GreenRedState(this);
-        this.YellowRedState = new YellowRedState(this);
-        this.RedGreenState = new RedGreenState(this);
-        this.RedYellowState = new RedYellowState(this);
-        this.currentState = this.GreenRedState;
+        this.greenRedState = new GreenRedState(this);
+        this.yellowRedState = new YellowRedState(this);
+        this.redGreenState = new RedGreenState(this);
+        this.redYellowState = new RedYellowState(this);
+        this.currentState = this.greenRedState;
     }
 
     public changeState(): void {
-        this.currentState.changeState(this);
+        this.currentState.changeState();
     }
 
     public setState(state: IState): void {
@@ -25,19 +25,19 @@ export class StateMachine {
     }
 
     public getGreenRedState(): IState {
-        return this.GreenRedState;
+        return this.greenRedState;
     }
 
     public getYellowRedState(): IState {
-        return this.YellowRedState;
+        return this.yellowRedState;
     }
 
     public getRedGreenState(): IState {
-        return this.RedGreenState;
+        return this.redGreenState;
     }
 
     public getRedYellowState(): IState {
-        return this.RedYellowState;
+        return this.redYellowState;
     }
 
     public getCurrentState(): IState {

@@ -1,3 +1,6 @@
-/**
- * Created by dmngu9 on 7/1/2017.
- */
+import {StateMachine} from './stateMachine';
+
+class Simulator {
+
+    constructor(private stateMachine: StateMachine) {}
+}
