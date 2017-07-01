@@ -3,11 +3,11 @@ module.exports = function(config) {
         basePath: '',
         frameworks: ['jasmine'],
         files: [
-            'dist/src/**/*.js',
-            'dist/test/**/*.spec.js'
+            'build/src/**/*.js',
+            'build/test/**/*.spec.js'
         ],
         preprocessors: {
-            'dist/src/**/*.js': ['coverage']
+            'build/src/**/*.js': ['coverage']
         },
         port: 9876,
         colors: true,
@@ -17,7 +17,7 @@ module.exports = function(config) {
         browsers: ['PhantomJS'],
         singleRun: true,
         coverageReporter: {
-            dir : 'dist/reports/coverage',
+            dir : 'build/reports/coverage',
             reporters: [
                 { type: 'html', subdir: '.' },
             ]

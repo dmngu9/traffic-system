@@ -6,8 +6,9 @@
   "license": "MIT",
   "main": "index.js",
   "scripts": {
-    "start": "tsc && copyfiles -f src/assets/*.* dist/src/assets/ && copyfiles index.html dist/",
-    "test": "karma start karma.conf.js"
+    "start": "tsc && copyfiles -f src/assets/*.* build/src/assets/",
+    "test": "karma start karma.conf.js",
+    "checkLinting": "tslint src/**/*.ts test/**/*.ts"
   },
   "repository": {
     "type": "git",

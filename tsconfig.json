@@ -1,7 +1,7 @@
 {
   	"compileOnSave": true,
   	"compilerOptions": {
-	  	"outDir": "dist",
+	  	"outDir": "build",
 	  	"target": "ES5",
 	  	"module": "commonjs",
 	  	"sourceMap": true,
