@@ -5,6 +5,7 @@ export interface IState {
 }
 
 export class GreenRedState implements IState {
+
     constructor(private stateMachine: StateMachine) {}
 
     public changeState(stateMachine: StateMachine) {
