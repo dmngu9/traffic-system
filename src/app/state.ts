@@ -49,6 +49,6 @@ export class RedYellowState implements IState {
     public changeState() {
         setTimeout(() => {
             this.stateMachine.setState(this.stateMachine.getGreenRedState());
-        }, PERIOD.GREEN_OR_RED);
+        }, PERIOD.YELLOW);
     }
 }

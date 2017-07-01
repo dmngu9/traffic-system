@@ -2,5 +2,13 @@ import {StateMachine} from './stateMachine';
 
 class Simulator {
 
-    constructor(private stateMachine: StateMachine) {}
+    private northTrafficLight;
+    private southTrafficLight;
+    private eastTrafficLight;
+    private westTrafficLight;
+    private stateMachine;
+
+    constructor() {
+        this.stateMachine = new StateMachine();
+    }
 }
