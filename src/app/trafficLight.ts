@@ -1,18 +1,16 @@
-export enum SIGNAL {
-    GREEN,
-    YELLOW,
-    RED
-}
+import {SIGNAL} from './state';
 
 export class TrafficLight {
 
-    constructor(private element: HTMLElement,
-                private position: string,
-                private signal: SIGNAL) {}
+    constructor(private position: string,
+                private signal: SIGNAL,
+                private element?: HTMLElement) {}
 
-    public setSignalAndColor(signal: SIGNAL): void {
+    public setSignal(signal: SIGNAL): void {
         this.signal = signal;
-        this.setColor();
+        if (this.element) {
+            this.setColor();
+        }
     }
 
     private setColor(): void {
