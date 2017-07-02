@@ -20,4 +20,7 @@ I made an assumption that the state change cycle always start at GreenRedState. 
 
 ## Things that I have not done properly
 Karma source map is not configured correctly. No line number shows for what expect statement fails in the test.
+
 Using Webpack for small project is overkill. I need ts-loader in order to load CommonJs to browser. Other option is to use Browserify but Im not familiar with it.
+
+TrafficLight class takes UI Element and anything relate to UI Element is not tested in unit tests. I feel like this is more like e2e tests.
