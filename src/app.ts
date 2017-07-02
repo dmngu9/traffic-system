@@ -1,7 +1,5 @@
-import './app/state';
-import './app/stateMachine';
-import './app/trafficLight';
-import './app/simulator';
+const appContext = require.context('./app', true, /\.ts$/);
+appContext.keys().forEach(appContext);
 
 import './assets/app.css';
 

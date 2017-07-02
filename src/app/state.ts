@@ -1,9 +1,9 @@
 import {StateMachine} from './stateMachine';
 
 export const PERIOD = {
-    GREEN_OR_RED: 5000,
-    YELLOW: 2000,
-    SIMULATION: 333333333
+    GREEN_OR_RED: 270000, // 4.5 mins
+    YELLOW: 30000, // 30s
+    SIMULATION: 1800000 // 30 mins
 };
 
 export const SIGNAL = {
@@ -11,21 +11,28 @@ export const SIGNAL = {
     YELLOW: 'yellow',
     RED: 'red',
     INACTIVE: 'gray'
+};
+
+export abstract class AbstractState {
+    protected timer: number;
+    abstract changeState(): void;
+    abstract getStateSignals(): any;
+    public setTimer(period: number): void {
+        this.timer = period;
+    }
 }
 
-export interface IState {
-    changeState: () => void;
-    getStateSignals: () => any;
-}
+export class GreenRedState extends AbstractState {
 
-export class GreenRedState implements IState {
-
-    constructor(private stateMachine: StateMachine) {}
+    constructor(private stateMachine: StateMachine) {
+        super();
+        this.timer = PERIOD.GREEN_OR_RED;
+    }
 
     public changeState(): void {
         setTimeout(() => {
             this.stateMachine.setState(this.stateMachine.getYellowRedState());
-        }, PERIOD.GREEN_OR_RED);
+        }, this.timer);
     }
 
     public getStateSignals(): any {
@@ -36,14 +43,17 @@ export class GreenRedState implements IState {
     }
 }
 
-export class YellowRedState implements IState {
+export class YellowRedState extends AbstractState {
 
-    constructor(private stateMachine: StateMachine) {}
+    constructor(private stateMachine: StateMachine) {
+        super();
+        this.timer = PERIOD.YELLOW;
+    }
 
     public changeState(): void {
         setTimeout(() => {
             this.stateMachine.setState(this.stateMachine.getRedGreenState());
-        }, PERIOD.YELLOW);
+        }, this.timer);
     }
 
     public getStateSignals(): any {
@@ -54,14 +64,17 @@ export class YellowRedState implements IState {
     }
 }
 
-export class RedGreenState implements IState {
+export class RedGreenState extends AbstractState {
 
-    constructor(private stateMachine: StateMachine) {}
+    constructor(private stateMachine: StateMachine) {
+        super();
+        this.timer = PERIOD.GREEN_OR_RED;
+    }
 
     public changeState(): void {
         setTimeout(() => {
             this.stateMachine.setState(this.stateMachine.getRedYellowState());
-        }, PERIOD.GREEN_OR_RED);
+        }, this.timer);
     }
 
     public getStateSignals(): any {
@@ -72,14 +85,17 @@ export class RedGreenState implements IState {
     }
 }
 
-export class RedYellowState implements IState {
+export class RedYellowState extends AbstractState {
 
-    constructor(private stateMachine: StateMachine) {}
+    constructor(private stateMachine: StateMachine) {
+        super();
+        this.timer = PERIOD.YELLOW;
+    }
 
     public changeState(): void {
         setTimeout(() => {
             this.stateMachine.setState(this.stateMachine.getGreenRedState());
-        }, PERIOD.YELLOW);
+        }, this.timer);
     }
 
     public getStateSignals(): any {

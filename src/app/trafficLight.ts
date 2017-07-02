@@ -5,23 +5,25 @@ export class TrafficLight {
     private greenLight: Element;
     private yellowLight: Element;
     private redLight: Element;
+    private lightbox: Element;
 
     constructor(private position: string,
                 private signal: string,
-                private element?: Element) {
+                element?: Element) {
         this.setElement(element);
     }
 
     public setSignal(signal: string): void {
-        this.setColor(signal);
         this.signal = signal;
+        this.setColor(signal);
     }
 
     public setElement(el: Element): void {
         if (el) {
-            this.greenLight = this.element.querySelector('.box div:nth-child(1)');
-            this.yellowLight = this.element.querySelector('.box div:nth-child(2)');
-            this.redLight = this.element.querySelector('.box div:nth-child(3)');
+            this.lightbox = el;
+            this.greenLight = this.lightbox.querySelector('.box div:nth-child(1)');
+            this.yellowLight = this.lightbox.querySelector('.box div:nth-child(2)');
+            this.redLight = this.lightbox.querySelector('.box div:nth-child(3)');
         }
     }
 
@@ -30,25 +32,19 @@ export class TrafficLight {
     }
 
     private setColor(signal: string): void {
-        if (this.element) {
+        if (this.lightbox) {
+            this.disableAllLights();
             switch (signal) {
                 case SIGNAL.GREEN: {
-                    this.redLight.classList.remove(this.signal);
-                    this.greenLight.classList.add(signal);
+                    this.enableGreenLight();
                     break;
                 }
                 case SIGNAL.YELLOW: {
-                    this.greenLight.classList.remove(this.signal);
-                    this.yellowLight.classList.add(signal);
+                    this.enableYellowLight();
                     break;
                 }
                 case SIGNAL.RED: {
-                    this.yellowLight.classList.remove(this.signal);
-                    this.redLight.classList.add(signal);
-                    break;
-                }
-                case SIGNAL.INACTIVE: {
-                    this.element.querySelector(`.${this.signal}`).classList.remove(this.signal);
+                    this.enableRedLight();
                     break;
                 }
                 default: {
@@ -56,6 +52,24 @@ export class TrafficLight {
                 }
             }
         }
+    }
+
+    private disableAllLights(): void {
+        this.greenLight.classList.remove(SIGNAL.GREEN);
+        this.yellowLight.classList.remove(SIGNAL.YELLOW);
+        this.redLight.classList.remove(SIGNAL.RED);
+    }
+
+    private enableGreenLight(): void {
+        this.greenLight.classList.add(SIGNAL.GREEN);
+    }
+
+    private enableYellowLight(): void {
+        this.yellowLight.classList.add(SIGNAL.YELLOW);
+    }
+
+    private enableRedLight(): void {
+        this.redLight.classList.add(SIGNAL.RED);
     }
 }
 
