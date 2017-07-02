@@ -1,13 +1,15 @@
+var webpack = require('./webpack.config');
+
 module.exports = function(config) {
     config.set({
         basePath: '',
         frameworks: ['jasmine'],
         files: [
-            'build/src/**/*.js',
-            'build/test/**/*.spec.js'
+            'test/**/*.spec.ts'
         ],
+        webpack: webpack,
         preprocessors: {
-            'build/src/**/*.js': ['coverage']
+            'test/**/*.spec.ts': ['webpack', 'sourcemap']
         },
         port: 9876,
         colors: true,

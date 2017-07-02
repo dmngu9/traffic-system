@@ -4,7 +4,7 @@ export class TrafficLight {
 
     constructor(private position: string,
                 private signal: SIGNAL,
-                private element?: HTMLElement) {}
+                private element?: Element) {}
 
     public setSignal(signal: SIGNAL): void {
         this.signal = signal;
@@ -16,15 +16,18 @@ export class TrafficLight {
     private setColor(): void {
         switch(this.signal) {
             case SIGNAL.GREEN: {
-                this.element.style.background = 'green';
+                this.element.classList.remove('red');
+                this.element.classList.add('green');
                 break;
             }
             case SIGNAL.YELLOW: {
-                this.element.style.background = 'yellow';
+                this.element.classList.remove('green');
+                this.element.classList.add('yellow');
                 break;
             }
             case SIGNAL.RED: {
-                this.element.style.background = 'red';
+                this.element.classList.remove('yellow');
+                this.element.classList.add('red');
                 break;
             }
             default: {

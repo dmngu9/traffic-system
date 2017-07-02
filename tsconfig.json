@@ -1,14 +1,17 @@
 {
-  	"compileOnSave": true,
-  	"compilerOptions": {
-	  	"outDir": "build",
-	  	"target": "ES5",
-	  	"module": "commonjs",
-	  	"sourceMap": true,
-	  	"allowJs": true,
-	  	"baseUrl": ".",
+	"compileOnSave": true,
+	"compilerOptions": {
+		"outDir": "build/",
+		"target": "ES5",
+		"module": "commonjs",
+		"sourceMap": true,
+		"allowJs": true,
+		"baseUrl": ".",
 		"typeRoots": ["node_modules/@types"]
-  	},
-  	"exclude": ["node_modules"],
-  	"include": ["src", "test"]
+	},
+	"exclude": ["node_modules"],
+	"include": [
+		"src/**/*",
+		"test/**/*"
+	]
 }
