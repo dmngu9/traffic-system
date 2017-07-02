@@ -20,12 +20,12 @@ export class StateMachine {
     }
 
     public init(): void {
-        this.startSimulation = true;
+        this.enableSimulation();
         this.repeatCycle();
     }
 
     public destroy(): void {
-        this.startSimulation = false;
+        this.disableSimulation();
         this.currentState = this.greenRedState;
         this.trafficLightController.resetLightSignals();
     }
@@ -61,6 +61,14 @@ export class StateMachine {
 
     public getTrafficLightController(): TrafficLightController {
         return this.trafficLightController;
+    }
+
+    public enableSimulation(): void {
+        this.startSimulation = true;
+    }
+
+    public disableSimulation(): void {
+        this.startSimulation = false;
     }
 
     public repeatCycle(): void {

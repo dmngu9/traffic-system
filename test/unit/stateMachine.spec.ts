@@ -3,7 +3,7 @@ import {TrafficLightController} from '../../src/app/trafficLightController';
 import {PERIOD, SIGNAL} from '../../src/app/state';
 import {StateMachine} from '../../src/app/stateMachine';
 
-describe('trafficLight and trafficLightController tests', () => {
+describe('state machine tests', () => {
 
     let trafficController: TrafficLightController,
         northTrafficLight: TrafficLight,
@@ -101,6 +101,17 @@ describe('trafficLight and trafficLightController tests', () => {
         expect(stateMachine.getYellowRedState).toHaveBeenCalledTimes(3);
         expect(stateMachine.getRedYellowState).toHaveBeenCalledTimes(3);
         expect(stateMachine.getGreenRedState).toHaveBeenCalledTimes(3);
+    });
+
+    it('should repeat changing state sequence and light traffic signal after setState', () => {
+        spyOn(stateMachine, 'changeState');
+        spyOn(trafficController, 'changeLightSignals');
+
+        stateMachine.enableSimulation();
+        stateMachine.setState(stateMachine.getCurrentState());
+
+        expect(stateMachine.changeState).toHaveBeenCalled();
+        expect(trafficController.changeLightSignals).toHaveBeenCalled();
     });
 });
 
