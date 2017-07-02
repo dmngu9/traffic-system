@@ -34,6 +34,21 @@ export class StateMachine {
         this.currentState.changeState();
     }
 
+    public enableSimulation(): void {
+        this.startSimulation = true;
+    }
+
+    public disableSimulation(): void {
+        this.startSimulation = false;
+    }
+
+    public repeatCycle(): void {
+        if (this.startSimulation) {
+            this.trafficLightController.changeLightSignals(this.currentState.getStateSignals());
+            this.changeState();
+        }
+    }
+
     public setState(state: AbstractState): void {
         this.currentState = state;
         this.repeatCycle();
@@ -61,20 +76,5 @@ export class StateMachine {
 
     public getTrafficLightController(): TrafficLightController {
         return this.trafficLightController;
-    }
-
-    public enableSimulation(): void {
-        this.startSimulation = true;
-    }
-
-    public disableSimulation(): void {
-        this.startSimulation = false;
-    }
-
-    public repeatCycle(): void {
-        if (this.startSimulation) {
-            this.trafficLightController.changeLightSignals(this.currentState.getStateSignals());
-            this.changeState();
-        }
     }
 }
