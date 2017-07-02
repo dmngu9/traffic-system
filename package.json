@@ -6,7 +6,7 @@
   "license": "MIT",
   "main": "index.js",
   "scripts": {
-    "start": "webpack -w",
+    "start": "webpack",
     "test": "karma start karma.conf.js",
     "checkLinting": "tslint src/**/*.ts test/**/*.ts"
   },
