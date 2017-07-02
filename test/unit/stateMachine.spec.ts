@@ -32,22 +32,47 @@ describe('trafficLight and trafficLightController tests', () => {
     });
 
     it('should have correct state and signal change sequence', () => {
+        stateMachine.getTrafficLightController()
+            .changeLightSignals(stateMachine.getCurrentState().getStateSignals());
+
+        expect(northTrafficLight.getSignal()).toBe(SIGNAL.GREEN);
+        expect(eastTrafficLight.getSignal()).toBe(SIGNAL.RED);
         expect(stateMachine.getCurrentState()).toBe(stateMachine.getGreenRedState());
 
         stateMachine.changeState();
         jasmine.clock().tick(PERIOD.GREEN_OR_RED);
+        stateMachine.getTrafficLightController()
+            .changeLightSignals(stateMachine.getCurrentState().getStateSignals());
+
+        expect(northTrafficLight.getSignal()).toBe(SIGNAL.YELLOW);
+        expect(eastTrafficLight.getSignal()).toBe(SIGNAL.RED);
         expect(stateMachine.getCurrentState()).toBe(stateMachine.getYellowRedState());
 
         stateMachine.changeState();
         jasmine.clock().tick(PERIOD.YELLOW);
+        stateMachine.getTrafficLightController()
+            .changeLightSignals(stateMachine.getCurrentState().getStateSignals());
+
+        expect(northTrafficLight.getSignal()).toBe(SIGNAL.RED);
+        expect(eastTrafficLight.getSignal()).toBe(SIGNAL.GREEN);
         expect(stateMachine.getCurrentState()).toBe(stateMachine.getRedGreenState());
 
         stateMachine.changeState();
         jasmine.clock().tick(PERIOD.GREEN_OR_RED);
+        stateMachine.getTrafficLightController()
+            .changeLightSignals(stateMachine.getCurrentState().getStateSignals());
+
+        expect(northTrafficLight.getSignal()).toBe(SIGNAL.RED);
+        expect(eastTrafficLight.getSignal()).toBe(SIGNAL.YELLOW);
         expect(stateMachine.getCurrentState()).toBe(stateMachine.getRedYellowState());
 
         stateMachine.changeState();
         jasmine.clock().tick(PERIOD.YELLOW);
+        stateMachine.getTrafficLightController()
+            .changeLightSignals(stateMachine.getCurrentState().getStateSignals());
+
+        expect(northTrafficLight.getSignal()).toBe(SIGNAL.GREEN);
+        expect(eastTrafficLight.getSignal()).toBe(SIGNAL.RED);
         expect(stateMachine.getCurrentState()).toBe(stateMachine.getGreenRedState());
     });
 
@@ -57,6 +82,25 @@ describe('trafficLight and trafficLightController tests', () => {
 
         expect(trafficController.resetLightSignals).toHaveBeenCalled();
         expect(stateMachine.getCurrentState()).toBe(stateMachine.getGreenRedState());
+    });
+
+    it('should change state 12 times and transition to each state 3 times in 30mins', () => {
+        spyOn(stateMachine, 'setState').and.callThrough();
+        spyOn(stateMachine, 'getRedGreenState').and.callThrough();
+        spyOn(stateMachine, 'getYellowRedState').and.callThrough();
+        spyOn(stateMachine, 'getRedYellowState').and.callThrough();
+        spyOn(stateMachine, 'getGreenRedState').and.callThrough();
+
+        stateMachine.init();
+        jasmine.clock().tick(PERIOD.SIMULATION);
+        stateMachine.destroy();
+
+        expect(stateMachine.setState).toHaveBeenCalledTimes(12);
+        // only get state when setting state. This check make sure each state visited 3 times
+        expect(stateMachine.getRedGreenState).toHaveBeenCalledTimes(3);
+        expect(stateMachine.getYellowRedState).toHaveBeenCalledTimes(3);
+        expect(stateMachine.getRedYellowState).toHaveBeenCalledTimes(3);
+        expect(stateMachine.getGreenRedState).toHaveBeenCalledTimes(3);
     });
 });
 

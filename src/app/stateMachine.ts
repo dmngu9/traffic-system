@@ -59,6 +59,10 @@ export class StateMachine {
         return this.currentState;
     }
 
+    public getTrafficLightController(): TrafficLightController {
+        return this.trafficLightController;
+    }
+
     public repeatCycle(): void {
         if (this.startSimulation) {
             this.trafficLightController.changeLightSignals(this.currentState.getStateSignals());
