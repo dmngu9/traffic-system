@@ -1,7 +1,7 @@
 import {TrafficLight} from './trafficLight';
 import {StateMachine} from './stateMachine';
 import {TrafficLightController} from './trafficLightController';
-import {PERIOD} from "./state";
+import {PERIOD} from './state';
 
 const northTrafficLight = new TrafficLight('north', undefined, document.querySelector('#north'));
 const southTrafficLight = new TrafficLight('south', undefined, document.querySelector('#south'));

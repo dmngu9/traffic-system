@@ -5,11 +5,12 @@ module.exports = function(config) {
         basePath: '',
         frameworks: ['jasmine'],
         files: [
-            'test/**/*.spec.ts'
+            'test/karma.tests.ts'
         ],
         webpack: webpack,
         preprocessors: {
-            'test/**/*.spec.ts': ['webpack', 'sourcemap']
+            'src/app.ts': ['coverage'],
+            'test/karma.tests.ts': ['webpack', 'sourcemap']
         },
         port: 9876,
         colors: true,
