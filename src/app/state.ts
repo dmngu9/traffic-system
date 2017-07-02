@@ -1,15 +1,16 @@
 import {StateMachine} from './stateMachine';
 
 export const PERIOD = {
-    GREEN_OR_RED: 30000,
-    YELLOW: 10000,
+    GREEN_OR_RED: 10000,
+    YELLOW: 5000,
     SIMULATION: 333333333
 };
 
-export enum SIGNAL {
-    GREEN,
-    YELLOW,
-    RED
+export const SIGNAL = {
+    GREEN: 'green',
+    YELLOW: 'yellow',
+    RED: 'red',
+    INACTIVE: 'gray'
 }
 
 export interface IState {

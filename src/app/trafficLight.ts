@@ -3,37 +3,19 @@ import {SIGNAL} from './state';
 export class TrafficLight {
 
     constructor(private position: string,
-                private signal: SIGNAL,
+                private signal: string,
                 private element?: Element) {}
 
-    public setSignal(signal: SIGNAL): void {
+    public setSignal(signal: string): void {
         this.signal = signal;
         if (this.element) {
-            this.setColor();
+            this.element.classList.remove(this.element.classList.item(0));
+            this.element.classList.add(signal);
         }
     }
 
-    private setColor(): void {
-        switch(this.signal) {
-            case SIGNAL.GREEN: {
-                this.element.classList.remove('red');
-                this.element.classList.add('green');
-                break;
-            }
-            case SIGNAL.YELLOW: {
-                this.element.classList.remove('green');
-                this.element.classList.add('yellow');
-                break;
-            }
-            case SIGNAL.RED: {
-                this.element.classList.remove('yellow');
-                this.element.classList.add('red');
-                break;
-            }
-            default: {
-                break;
-            }
-        }
+    public getSignal(): string {
+        return this.signal;
     }
 }
 

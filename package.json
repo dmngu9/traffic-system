@@ -6,7 +6,7 @@
   "license": "MIT",
   "main": "index.js",
   "scripts": {
-    "start": "webpack",
+    "start": "webpack -w",
     "test": "karma start karma.conf.js",
     "checkLinting": "tslint src/**/*.ts test/**/*.ts"
   },
@@ -31,7 +31,7 @@
     "karma-webpack": "2.0.3",
     "phantomjs": "^2.1.7",
     "tslint": "^5.4.3",
-    "typescript": "^2.4.1",
+    "typescript": "2.3.2",
     "ts-loader": "2.0.3",
     "webpack": "2.3.3",
     "css-loader": "0.27.2",

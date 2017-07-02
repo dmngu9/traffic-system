@@ -1,4 +1,4 @@
-import {GreenRedState, IState, RedGreenState, RedYellowState, YellowRedState} from './state';
+import {GreenRedState, IState, RedGreenState, RedYellowState, SIGNAL, YellowRedState} from './state';
 import {TrafficLight} from './trafficLight';
 
 export class StateMachine {
@@ -8,6 +8,7 @@ export class StateMachine {
     private redGreenState: IState;
     private redYellowState: IState;
     private currentState: IState;
+    private startSimulation: boolean;
 
     constructor(private northTrafficLight: TrafficLight,
                 private southTrafficLight: TrafficLight,
@@ -18,10 +19,17 @@ export class StateMachine {
         this.redGreenState = new RedGreenState(this);
         this.redYellowState = new RedYellowState(this);
         this.currentState = this.greenRedState;
+        this.startSimulation = false;
     }
 
     public init(): void {
-        this.changeState();
+        this.startSimulation = true;
+        this.repeatCycle();
+    }
+
+    public destroy(): void {
+        this.startSimulation = false;
+        this.resetLightSignals();
     }
 
     public changeState(): void {
@@ -30,8 +38,7 @@ export class StateMachine {
 
     public setState(state: IState): void {
         this.currentState = state;
-        this.changeLightSignals();
-        this.changeState();
+        this.repeatCycle();
     }
 
     public getGreenRedState(): IState {
@@ -60,5 +67,19 @@ export class StateMachine {
         this.southTrafficLight.setSignal(stateSignals.NORTH_SOUTH);
         this.eastTrafficLight.setSignal(stateSignals.EAST_WEST);
         this.westTrafficLight.setSignal(stateSignals.EAST_WEST);
+    }
+
+    private resetLightSignals(): void {
+        this.northTrafficLight.setSignal(SIGNAL.INACTIVE);
+        this.southTrafficLight.setSignal(SIGNAL.INACTIVE);
+        this.eastTrafficLight.setSignal(SIGNAL.INACTIVE);
+        this.westTrafficLight.setSignal(SIGNAL.INACTIVE);
+    }
+
+    private repeatCycle(): void {
+        if (this.startSimulation) {
+            this.changeLightSignals();
+            this.changeState();
+        }
     }
 }

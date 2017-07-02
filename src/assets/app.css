@@ -5,14 +5,19 @@ div {
     background: gray;
 }
 
-green {
-    background-color: green;
+button {
+    display: inline;
+    margin: 20px 20px 20px 20px;
 }
 
-yellow {
-    background-color: yellow;
+.green {
+    background: green;
 }
 
-red {
-    background-color: red;
+.yellow {
+    background: yellow;
+}
+
+.red {
+    background: red;
 }

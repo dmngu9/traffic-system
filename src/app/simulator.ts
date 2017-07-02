@@ -16,7 +16,12 @@ const stateMachine = new StateMachine(northTrafficLight,
                                       eastTrafficLight,
                                       westTrafficLight);
 
-// const startButton: Element = document.querySelector('#startButton');
-// startButton.addEventListener('click', () => {
-//     stateMachine.init();
-// });
+const startButton: Element = document.querySelector('#startButton');
+startButton.addEventListener('click', () => {
+    stateMachine.init();
+});
+
+const stopButton: Element = document.querySelector('#stopButton');
+stopButton.addEventListener('click', () => {
+    stateMachine.destroy();
+});
