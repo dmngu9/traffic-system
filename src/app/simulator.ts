@@ -1,15 +1,10 @@
 import {TrafficLight} from './trafficLight';
 import {StateMachine} from './stateMachine';
 
-const northTrafficLightElement: Element = document.querySelector('#north');
-const southTrafficLightElement: Element = document.querySelector('#south');
-const eastTrafficLightElement: Element = document.querySelector('#east');
-const westTrafficLightElement: Element = document.querySelector('#west');
-
-const northTrafficLight = new TrafficLight('north', undefined, northTrafficLightElement);
-const soutthTrafficLight = new TrafficLight('south', undefined, southTrafficLightElement);
-const eastTrafficLight = new TrafficLight('east', undefined, eastTrafficLightElement);
-const westTrafficLight = new TrafficLight('west', undefined, westTrafficLightElement);
+const northTrafficLight = new TrafficLight('north', undefined, document.querySelector('#north'));
+const soutthTrafficLight = new TrafficLight('south', undefined, document.querySelector('#south'));
+const eastTrafficLight = new TrafficLight('east', undefined, document.querySelector('#east'));
+const westTrafficLight = new TrafficLight('west', undefined, document.querySelector('#west'));
 
 const stateMachine = new StateMachine(northTrafficLight,
                                       soutthTrafficLight,

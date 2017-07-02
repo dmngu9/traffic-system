@@ -1,8 +1,8 @@
 import {StateMachine} from './stateMachine';
 
 export const PERIOD = {
-    GREEN_OR_RED: 10000,
-    YELLOW: 5000,
+    GREEN_OR_RED: 5000,
+    YELLOW: 2000,
     SIMULATION: 333333333
 };
 

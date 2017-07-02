@@ -29,6 +29,7 @@ export class StateMachine {
 
     public destroy(): void {
         this.startSimulation = false;
+        this.currentState = this.greenRedState;
         this.resetLightSignals();
     }
 

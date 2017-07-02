@@ -1,13 +1,24 @@
-div {
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    background: gray;
-}
-
 button {
     display: inline;
     margin: 20px 20px 20px 20px;
+}
+
+body > div > div {
+    display: inline-block;
+    margin: 20px 20px 20px 20px;
+}
+
+.box {
+    display: inline-block;
+    border: 2px solid black;
+}
+
+.light {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    margin: 5px;
+    background: gray;
 }
 
 .green {
