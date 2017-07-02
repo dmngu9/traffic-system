@@ -32,8 +32,7 @@ describe('state machine tests', () => {
     });
 
     it('should have correct state and signal change sequence', () => {
-        stateMachine.getTrafficLightController()
-            .changeLightSignals(stateMachine.getCurrentState().getStateSignals());
+        trafficController.changeLightSignals(stateMachine.getCurrentState().getStateSignals());
 
         expect(northTrafficLight.getSignal()).toBe(SIGNAL.GREEN);
         expect(eastTrafficLight.getSignal()).toBe(SIGNAL.RED);
@@ -41,8 +40,7 @@ describe('state machine tests', () => {
 
         stateMachine.changeState();
         jasmine.clock().tick(PERIOD.GREEN_OR_RED);
-        stateMachine.getTrafficLightController()
-            .changeLightSignals(stateMachine.getCurrentState().getStateSignals());
+        trafficController.changeLightSignals(stateMachine.getCurrentState().getStateSignals());
 
         expect(northTrafficLight.getSignal()).toBe(SIGNAL.YELLOW);
         expect(eastTrafficLight.getSignal()).toBe(SIGNAL.RED);
@@ -50,8 +48,7 @@ describe('state machine tests', () => {
 
         stateMachine.changeState();
         jasmine.clock().tick(PERIOD.YELLOW);
-        stateMachine.getTrafficLightController()
-            .changeLightSignals(stateMachine.getCurrentState().getStateSignals());
+        trafficController.changeLightSignals(stateMachine.getCurrentState().getStateSignals());
 
         expect(northTrafficLight.getSignal()).toBe(SIGNAL.RED);
         expect(eastTrafficLight.getSignal()).toBe(SIGNAL.GREEN);
@@ -59,8 +56,7 @@ describe('state machine tests', () => {
 
         stateMachine.changeState();
         jasmine.clock().tick(PERIOD.GREEN_OR_RED);
-        stateMachine.getTrafficLightController()
-            .changeLightSignals(stateMachine.getCurrentState().getStateSignals());
+        trafficController.changeLightSignals(stateMachine.getCurrentState().getStateSignals());
 
         expect(northTrafficLight.getSignal()).toBe(SIGNAL.RED);
         expect(eastTrafficLight.getSignal()).toBe(SIGNAL.YELLOW);
@@ -68,8 +64,7 @@ describe('state machine tests', () => {
 
         stateMachine.changeState();
         jasmine.clock().tick(PERIOD.YELLOW);
-        stateMachine.getTrafficLightController()
-            .changeLightSignals(stateMachine.getCurrentState().getStateSignals());
+        trafficController.changeLightSignals(stateMachine.getCurrentState().getStateSignals());
 
         expect(northTrafficLight.getSignal()).toBe(SIGNAL.GREEN);
         expect(eastTrafficLight.getSignal()).toBe(SIGNAL.RED);
