@@ -26,6 +26,7 @@ export class StateMachine {
 
     public destroy(): void {
         this.disableSimulation();
+        this.clearCallbacks();
         this.currentState = this.greenRedState;
         this.trafficLightController.resetLightSignals();
     }
@@ -52,6 +53,13 @@ export class StateMachine {
     public setState(state: AbstractState): void {
         this.currentState = state;
         this.repeatCycle();
+    }
+
+    public clearCallbacks(): void {
+        this.greenRedState.clearTimeout();
+        this.yellowRedState.clearTimeout();
+        this.redGreenState.clearTimeout();
+        this.redYellowState.clearTimeout();
     }
 
     public getGreenRedState(): AbstractState {

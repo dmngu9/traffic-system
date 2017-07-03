@@ -15,10 +15,14 @@ export const SIGNAL = {
 
 export abstract class AbstractState {
     protected timer: number;
+    protected timeout: any;
     abstract changeState(): void;
     abstract getStateSignals(): any;
     public setTimer(period: number): void {
         this.timer = period;
+    }
+    public clearTimeout(): void {
+        clearTimeout(this.timeout);
     }
 }
 
@@ -30,7 +34,7 @@ export class GreenRedState extends AbstractState {
     }
 
     public changeState(): void {
-        setTimeout(() => {
+        this.timeout = setTimeout(() => {
             this.stateMachine.setState(this.stateMachine.getYellowRedState());
         }, this.timer);
     }
@@ -51,7 +55,7 @@ export class YellowRedState extends AbstractState {
     }
 
     public changeState(): void {
-        setTimeout(() => {
+        this.timeout = setTimeout(() => {
             this.stateMachine.setState(this.stateMachine.getRedGreenState());
         }, this.timer);
     }
@@ -72,7 +76,7 @@ export class RedGreenState extends AbstractState {
     }
 
     public changeState(): void {
-        setTimeout(() => {
+        this.timeout = setTimeout(() => {
             this.stateMachine.setState(this.stateMachine.getRedYellowState());
         }, this.timer);
     }
@@ -93,7 +97,7 @@ export class RedYellowState extends AbstractState {
     }
 
     public changeState(): void {
-        setTimeout(() => {
+        this.timeout = setTimeout(() => {
             this.stateMachine.setState(this.stateMachine.getGreenRedState());
         }, this.timer);
     }
