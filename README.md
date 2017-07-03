@@ -38,4 +38,4 @@ TrafficLight class takes UI Element and anything relate to UI Element is not tes
 
 The init and destroy of StateMachine is very basic. It might be a weakness for scaling application.
 
-Overall, I only wanted to do minimum definition of done for the assignment as I have other things to do.
+I wonder if my code is type strong or not
