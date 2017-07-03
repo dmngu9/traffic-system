@@ -6,10 +6,11 @@ Simulation time is 30 mins
 Light change from Green to Red or vice versa takes 5 mins. Prior turning Red, The light should display Yellow for 30 seconds
 
 ## How to Start
-To build project, run npm start
-Open the index.html in browser
+To build project, run npm start. Open the index.html in browser
 
 To run unit tests, run npm test
+
+To check typescript linting, run npm run checkLinting
 
 ## Design
 There 4 traffic lights at positions: North, South, East, West. North & South traffic lights follow the same pattern and so do East & West traffic lights. I indentify 4 possible state as shown in the diagram below.
@@ -30,5 +31,3 @@ Karma source map is not configured correctly. No line number shows for what expe
 Using Webpack for small project is overkill. I need ts-loader in order to load CommonJs to browser. Other option is to use Browserify but Im not familiar with it.
 
 TrafficLight class takes UI Element and anything relate to UI Element is not tested in unit tests. I feel like this is more like e2e tests.
-
-I think I might mess up the event queue and call stack. I tried to make sure call stack is empty. 
