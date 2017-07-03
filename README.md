@@ -6,6 +6,10 @@ Simulation time is 30 mins
 Light change from Green to Red or vice versa takes 5 mins. Prior turning Red, The light should display Yellow for 30 seconds
 
 ## How to Start
+Make sure NodeJs is installed first (I used Nodejs v6).
+
+Must install dev-dependencies first, run npm install
+
 To build project, run npm start. Open the index.html in browser
 
 To run unit tests, run npm test
