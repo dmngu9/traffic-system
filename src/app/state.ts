@@ -18,9 +18,6 @@ export abstract class AbstractState {
     protected timeout: any;
     abstract changeState(): void;
     abstract getStateSignals(): any;
-    public setTimer(period: number): void {
-        this.timer = period;
-    }
     public clearTimeout(): void {
         clearTimeout(this.timeout);
     }

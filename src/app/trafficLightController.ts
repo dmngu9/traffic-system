@@ -21,20 +21,4 @@ export class TrafficLightController {
         this.eastTrafficLight.setSignal(SIGNAL.INACTIVE);
         this.westTrafficLight.setSignal(SIGNAL.INACTIVE);
     }
-
-    public getNorthTrafficLight(): TrafficLight {
-        return this.northTrafficLight;
-    }
-
-    public getSouthTrafficLight(): TrafficLight {
-        return this.southTrafficLight;
-    }
-
-    public getEastTrafficLight(): TrafficLight {
-        return this.eastTrafficLight;
-    }
-
-    public getWestTrafficLight(): TrafficLight {
-        return this.westTrafficLight;
-    }
 }
